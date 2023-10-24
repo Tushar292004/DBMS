@@ -1,0 +1,46 @@
+--Consider the following employee and department tables.
+--EMPLOYEE(empno, ename, designation, manager, hiredate, salary, commission,deptno) DEPARTMENT(deptno, dname, location)
+--(a) Create the above tables by properly specifying the primary keys and foreign keys and enterat least five tuples for each relation.
+--(b) List the names of employees whose name contain substring "LA".
+--(c) Listthe details of employees of salary are greater than or equal to the average salary of employee table.
+
+-- Create the DEPARTMENT table with primary key
+CREATE TABLE DEPARTMENT (
+    deptno INT PRIMARY KEY,
+    dname VARCHAR(50),
+    location VARCHAR(50)
+);
+
+-- Create the EMPLOYEE table with primary key
+CREATE TABLE EMPLOYEE (
+    empno INT PRIMARY KEY,
+    ename VARCHAR(50),
+    designation VARCHAR(50),
+    manager INT,
+    hiredate DATE,
+    salary DECIMAL(10, 2),
+    commission DECIMAL(10, 2),
+    deptno INT,
+    FOREIGN KEY (deptno) REFERENCES DEPARTMENT(deptno)
+);
+
+-- Insert sample data into the DEPARTMENT table
+INSERT INTO DEPARTMENT (deptno, dname, location)
+VALUES
+    (101, 'HR', 'New York'),
+    (102, 'Finance', 'Los Angeles'),
+    (103, 'IT', 'San Francisco');
+
+-- Insert sample data into the EMPLOYEE table
+INSERT INTO EMPLOYEE (empno, ename, designation, manager, hiredate, salary, commission, deptno)
+VALUES
+    (1, 'John Smith', 'Manager', NULL, '2023-01-15', 60000.00, NULL, 101),
+    (2, 'Michael Clark', 'Supervisor', 1, '2023-02-10', 45000.00, 2000.00, 101),
+    (3, 'Laura Adams', 'Clerk', 2, '2023-03-05', 30000.00, 1000.00, 102),
+    (4, 'William Lane', 'Clerk', 2, '2023-04-20', 28000.00, 800.00, 102),
+    (5, 'Maria Lopez', 'Analyst', 1, '2023-05-12', 55000.00, 2500.00, 103);
+    
+
+SELECT ename FROM EMPLOYEE WHERE ename LIKE '%LA%';
+
+SELECT * FROM EMPLOYEE WHERE salary >= (SELECT AVG(salary) FROM EMPLOYEE);

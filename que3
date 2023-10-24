@@ -1,0 +1,19 @@
+--Create the following table with the mapping given below.
+--BOOK(book_name,author_name,price,quantity).
+--A Write a query to update the quantity by double in the table book.
+--B List all the book_namewhose price is greater than Rs.400.
+--C Retrieve the list of author name whose first letter is 'a' along with the book_name and price.
+
+CREATE TABLE BOOK (
+    book_name VARCHAR(100),
+    author_name VARCHAR(50),
+    price DECIMAL(10, 2),
+    quantity INT
+);
+
+UPDATE BOOK SET quantity = quantity * 2;
+
+SELECT book_name FROM BOOK WHERE price > 400;
+
+SELECT book_name, author_name, price FROM BOOK WHERE author_name LIKE 'A%';
+

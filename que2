@@ -1,0 +1,24 @@
+--Create the following table with the mapping given below.
+--Customer (Custid. Custname, Addr, phno,panno).
+--(a) Delete the row where custname='NANCY".
+--(b) Update the addr where custname='MATHIK". 
+--(c) Display the details of a customer named 'LITHUANA'.
+
+CREATE TABLE Customer (
+    Custid INT PRIMARY KEY,
+    Custname VARCHAR(50),
+    Addr VARCHAR(100),
+    Phno VARCHAR(15),
+    Panno VARCHAR(10)
+);
+
+INSERT INTO Customer (Custid, Custname, Addr, Phno, Panno) VALUES
+(1, 'NANCY', '123 Main St', '555-123-4567', 'ABCD1234'),
+(2, 'MATHIK', '456 Elm St', '555-987-6543', 'EFGH5678'),
+(3, 'LITHUANA', '789 Oak St', '555-234-5678', 'IJKL9012');
+
+DELETE FROM Customer WHERE Custname = 'NANCY';
+
+UPDATE Customer SET Addr = '789 Maple St' WHERE Custname = 'MATHIK';
+
+SELECT * FROM Customer WHERE Custname = 'LITHUANA';
