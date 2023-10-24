@@ -1,0 +1,49 @@
+--Create the following tables with the mapping given below.
+--stu_details (reg_no, stu_name, DOB, address, city)
+--mark_details (reg_no, mark1, mark2, mark3, total)
+--(a)Find out the name of all students.
+--(b)List all the student detail that who are all located in Chennai.
+--(c)Drop the table mark_details.   
+
+-- Create the stu_details table
+CREATE TABLE stu_details (
+    reg_no INT PRIMARY KEY,
+    stu_name VARCHAR(50),
+    DOB DATE,
+    address VARCHAR(100),
+    city VARCHAR(50)
+);
+
+-- Insert sample data into the stu_details table
+INSERT INTO stu_details (reg_no, stu_name, DOB, address, city)
+VALUES
+    (1, 'John Doe', '2000-01-15', '123 Main St', 'Chennai'),
+    (2, 'Jane Smith', '1999-05-20', '456 Elm St', 'Bangalore'),
+    (3, 'Bob Johnson', '2001-03-10', '789 Oak St', 'Chennai'),
+    (4, 'Alice Brown', '2002-07-05', '101 Pine St', 'Delhi'),
+    (5, 'David Lee', '1998-11-30', '222 Maple St', 'Chennai');
+
+-- Create the mark_details table
+CREATE TABLE mark_details (
+    reg_no INT PRIMARY KEY,
+    mark1 INT,
+    mark2 INT,
+    mark3 INT,
+    total INT
+);
+
+-- Insert sample data into the mark_details table
+INSERT INTO mark_details (reg_no, mark1, mark2, mark3, total)
+VALUES
+    (1, 85, 90, 78, 253),
+    (2, 70, 75, 80, 225),
+    (3, 92, 88, 95, 275),
+    (4, 60, 65, 72, 197),
+    (5, 78, 82, 89, 249);
+
+
+SELECT stu_name FROM stu_details;
+
+SELECT * FROM stu_details WHERE city = 'Chennai';
+
+DROP TABLE mark_details;
