@@ -57,14 +57,12 @@ ADD CONSTRAINT CHK_DOB CHECK (DOB > '2000-12-31');
 
 -- ii. Display the passengers who had booked the journey from Mumbai to
 -- Chennai on 02-Feb-2019
-SELECT PNAME
-FROM PASSENGER
-WHERE PID IN (
-    SELECT PID
-    FROM BOOK_TICKET
-    WHERE ROUTENO IN (SELECT ROUTENO FROM BUS WHERE SOURCE = 'Mumbai' AND DESTINATION = 'Chennai')
-    AND JOURNEY_DATE = '2019-02-02'
-);
+SELECT P.PNAME, P.DOB, P.GENDER
+FROM PASSENGER P
+JOIN BOOK_TICKET BT ON P.PID = BT.PID
+JOIN BUS B ON BT.ROUTENO = B.ROUTENO
+WHERE B.SOURCE = 'Mumbai' AND B.DESTINATION = 'Chennai' AND BT.JOURNEY_DATE = DATE
+'2019-02-02';
 
 -- iii. List the details of passengers who have traveled more than three times on
 -- the same route.
