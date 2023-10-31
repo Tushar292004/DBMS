@@ -45,10 +45,18 @@ VALUES
 
 -- ii. Develop a SQL query to list the details of each driver and the number of
 -- trips traveled.
-
+SELECT D.DCODE, D.DNAME, D.DOB, D.GENDER, COUNT(T.TRIPID) AS num_trips 
+FROM DRIVER D 
+LEFT JOIN TRIPS T ON D.DCODE = T.DRIVER_DCODE 
+GROUP BY D.DCODE, D.DNAME, D.DOB, D.GENDER;
 
 -- iii. Write a PL/SQL Trigger to update and insert a data.
-
+CREATE OR REPLACE TRIGGER update_dob_trigger 
+BEFORE INSERT ON DRIVER 
+FOR EACH ROW 
+BEGIN 
+  :NEW.DOB := TO_DATE('2000-01-01', 'YYYY-MM-DD'); 
+END;
 
 -- iv. Count the number of drivers available
 SELECT COUNT(*) AS num_drivers

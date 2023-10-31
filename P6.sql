@@ -16,8 +16,8 @@ CREATE TABLE BOATS (
 );
 
 CREATE TABLE RESERVES (
-    sid INT,
-    bid INT,
+    sid INT FOREIGN KEY REFERENCES SAILOR(sid),
+    bid INT FOREIGN KEY REFERENCES BOATS(bid),
     day DATE
 );
 
@@ -61,7 +61,7 @@ WHERE age = (
 AND age >= 18;
 
 -- iii. List the sailors who have reserved for both ‘RED’ and ‘GREEN’ boats. 
-SELECT sid
+SELECT sid, sname
 FROM RESERVES
 WHERE bid IN (
     SELECT bid
